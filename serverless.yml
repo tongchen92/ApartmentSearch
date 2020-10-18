@@ -22,7 +22,7 @@ service: apartmentsearch
 
 provider:
   name: aws
-  runtime: python3.8
+  runtime: python3.7
   stage: dev
   region: us-east-1
   profile: Tong
@@ -114,3 +114,6 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+plugins:
+  - serverless-python-requirements
