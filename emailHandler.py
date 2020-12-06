@@ -7,7 +7,7 @@ SENDER = "Apartment Searcher <tongchen92@gmail.com>"
 
 # Replace recipient@example.com with a "To" address. If your account 
 # is still in the sandbox, this address must be verified.
-RECIPIENT = "dyr0916@gmail.com"
+RECIPIENT = "tongchen92@gmail.com"
 
 # Specify a configuration set. If you do not want to use a configuration
 # set, comment the following variable, and the 
@@ -84,7 +84,6 @@ def sendEmail(apartment):
         )
     # Display an error if something goes wrong.	
     except ClientError as e:
-        print(e.response['Error']['Message'])
+        return e.response
     else:
-        print("Email sent! Message ID:"),
-        print(response['MessageId'])
+        return("Email sent! Message ID:"+response['MessageId'])

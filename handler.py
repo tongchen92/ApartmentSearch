@@ -16,10 +16,11 @@ def hello(event, context):
     apartmentList = json.loads(s3Obj.get()['Body'].read().decode('utf-8'))
     apartments = soup.findAll("tr", {"class": "unit_display"})
 
+    resp = []
     for apt in apartments:
         if(apt['data-apartment-number'] not in apartmentList.keys()):
-            sendEmail(apt)
+            resp.append(sendEmail(apt))
         apartmentList[apt['data-apartment-number']] = None
 
     s3Obj.put(Body=(bytes(json.dumps(apartmentList).encode('UTF-8'))))
-    return 'Success'
+    return '/n'.join(resp)
